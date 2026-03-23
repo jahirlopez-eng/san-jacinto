@@ -1,0 +1,9 @@
+# robots.txt - Unidad Educativa Fiscal "San Jacinto" - Siglo XXI
+# Manabí, Ecuador - AMIE: 13H03824
+
+# Permitir acceso a todos los buscadores
+User-agent: *
+Allow: /
+
+# Ubicación del mapa del sitio
+Sitemap: https://github.io/san-jacinto/sitemap.xml
