@@ -9,7 +9,7 @@ backend:
   name: github
   repo: jahirlopez-eng/san-jacinto      # Su repositorio
   branch: main                           # Rama principal
-  base_url: sveltia-cms-auth.jahir-lopez.workers.dev  # Autenticación gratuita
+  base_url: https://sveltia-cms-auth.jahir-lopez.workers.dev  # Autenticación gratuita
 
 # ── CARPETA DONDE SE GUARDAN LAS IMÁGENES Y ARCHIVOS ───────────
 media_folder: "fotos"          # Carpeta en GitHub para imágenes
