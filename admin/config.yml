@@ -1,0 +1,276 @@
+# ═══════════════════════════════════════════════════════════════
+#  Sveltia CMS — Configuración institucional
+#  U.E.F. "San Jacinto" – Siglo XXI
+#  AMIE: 13H03824 | Manabí, Ecuador
+# ═══════════════════════════════════════════════════════════════
+
+# ── CONEXIÓN CON GITHUB ─────────────────────────────────────────
+backend:
+  name: github
+  repo: jahirlopez-eng/san-jacinto      # Su repositorio
+  branch: main                           # Rama principal
+  base_url: https://sveltia-cms-auth.pages.dev  # Autenticación gratuita
+
+# ── CARPETA DONDE SE GUARDAN LAS IMÁGENES Y ARCHIVOS ───────────
+media_folder: "fotos"          # Carpeta en GitHub para imágenes
+public_folder: "/fotos"        # Ruta pública en la web
+
+# ── IDIOMA DEL PANEL ────────────────────────────────────────────
+locale: es
+
+# ═══════════════════════════════════════════════════════════════
+#  COLECCIONES: cada una es una sección editable del panel
+# ═══════════════════════════════════════════════════════════════
+collections:
+
+  # ── 1. NOTICIAS Y COMUNICADOS ─────────────────────────────────
+  - name: "noticias"
+    label: "📰 Noticias y Comunicados"
+    label_singular: "Noticia"
+    folder: "_noticias"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{titulo}} — {{fecha}}"
+    fields:
+      - label: "Título de la noticia"
+        name: "titulo"
+        widget: "string"
+        hint: "Ej: Inicio del año lectivo 2025-2026"
+
+      - label: "Fecha"
+        name: "fecha"
+        widget: "datetime"
+        format: "DD/MM/YYYY"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+        hint: "Fecha de publicación del comunicado"
+
+      - label: "Categoría"
+        name: "categoria"
+        widget: "select"
+        options:
+          - { label: "📋 Comunicado oficial", value: "comunicado" }
+          - { label: "🏆 Logro institucional", value: "logro" }
+          - { label: "📅 Actividad o evento", value: "actividad" }
+          - { label: "📣 Aviso a padres de familia", value: "aviso" }
+          - { label: "🎓 Académico", value: "academico" }
+        default: "comunicado"
+
+      - label: "Resumen (aparece en la tarjeta)"
+        name: "resumen"
+        widget: "string"
+        hint: "Máximo 150 caracteres. Es el texto corto que se ve en la página principal."
+
+      - label: "Contenido completo"
+        name: "body"
+        widget: "markdown"
+        hint: "Escriba aquí el texto completo del comunicado o noticia."
+
+      - label: "Imagen de portada (opcional)"
+        name: "imagen"
+        widget: "image"
+        required: false
+        hint: "Suba una foto relacionada con la noticia. Formatos: JPG, PNG."
+        media_library:
+          config:
+            max_file_size: 5120000  # 5 MB máximo
+
+      - label: "Publicado"
+        name: "publicado"
+        widget: "boolean"
+        default: true
+        hint: "Desactive para guardar como borrador sin publicar."
+
+  # ── 2. GALERÍA DE FOTOS ───────────────────────────────────────
+  - name: "galeria"
+    label: "📷 Galería de Fotos"
+    label_singular: "Álbum"
+    folder: "_galeria"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    summary: "{{titulo}} ({{fecha}})"
+    fields:
+      - label: "Nombre del álbum"
+        name: "titulo"
+        widget: "string"
+        hint: "Ej: Día del maestro 2026, Graduación BGU 2025"
+
+      - label: "Fecha del evento"
+        name: "fecha"
+        widget: "datetime"
+        format: "DD/MM/YYYY"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+
+      - label: "Descripción del evento"
+        name: "descripcion"
+        widget: "text"
+        hint: "Breve descripción de lo que se realizó."
+
+      - label: "Fotos del álbum"
+        name: "fotos"
+        widget: "list"
+        label_singular: "Foto"
+        hint: "Agregue todas las fotos del evento. Puede subir varias."
+        fields:
+          - label: "Foto"
+            name: "imagen"
+            widget: "image"
+            media_library:
+              config:
+                max_file_size: 8192000  # 8 MB máximo
+          - label: "Descripción de la foto"
+            name: "descripcion"
+            widget: "string"
+            required: false
+            hint: "Ej: Estudiantes de 3ro BGU en ceremonia de graduación"
+
+  # ── 3. DOCUMENTOS INSTITUCIONALES ────────────────────────────
+  - name: "documentos"
+    label: "📄 Documentos"
+    label_singular: "Documento"
+    folder: "_documentos"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    summary: "{{titulo}} — {{tipo}}"
+    media_folder: "documentos"
+    public_folder: "/documentos"
+    fields:
+      - label: "Nombre del documento"
+        name: "titulo"
+        widget: "string"
+        hint: "Ej: Circular N.° 001 - Inicio de clases"
+
+      - label: "Tipo de documento"
+        name: "tipo"
+        widget: "select"
+        options:
+          - { label: "📋 Circular", value: "circular" }
+          - { label: "📝 Comunicado oficial", value: "comunicado" }
+          - { label: "📊 Planilla / Excel", value: "planilla" }
+          - { label: "📖 Plan institucional", value: "plan" }
+          - { label: "🗓️ Cronograma", value: "cronograma" }
+          - { label: "📑 Otro documento", value: "otro" }
+
+      - label: "Fecha"
+        name: "fecha"
+        widget: "datetime"
+        format: "DD/MM/YYYY"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+
+      - label: "Dirigido a"
+        name: "dirigido"
+        widget: "select"
+        options:
+          - { label: "👨‍👩‍👧 Padres de familia", value: "padres" }
+          - { label: "👩‍🏫 Docentes", value: "docentes" }
+          - { label: "🎓 Estudiantes", value: "estudiantes" }
+          - { label: "🏛️ Toda la comunidad educativa", value: "comunidad" }
+        default: "comunidad"
+
+      - label: "Descripción"
+        name: "descripcion"
+        widget: "text"
+        hint: "Breve descripción del contenido del documento."
+
+      - label: "Archivo (PDF, Word o Excel)"
+        name: "archivo"
+        widget: "file"
+        hint: "Suba el documento. Formatos aceptados: PDF, DOCX, XLSX. Máx. 10 MB."
+        media_library:
+          config:
+            max_file_size: 10485760  # 10 MB
+
+      - label: "Visible en la página"
+        name: "visible"
+        widget: "boolean"
+        default: true
+
+  # ── 4. EQUIPO DOCENTE ─────────────────────────────────────────
+  - name: "docentes"
+    label: "👩‍🏫 Equipo Docente"
+    label_singular: "Docente"
+    folder: "_docentes"
+    create: true
+    slug: "{{nombre_slug}}"
+    summary: "{{nombre}} — {{cargo}}"
+    fields:
+      - label: "Nombre completo"
+        name: "nombre"
+        widget: "string"
+        hint: "Ej: Lic. Fabiola Vargas Mera"
+
+      - label: "Nombre para URL (sin tildes ni espacios)"
+        name: "nombre_slug"
+        widget: "string"
+        hint: "Ej: fabiola-vargas — solo letras minúsculas y guiones"
+
+      - label: "Cargo"
+        name: "cargo"
+        widget: "string"
+        hint: "Ej: Docente de Matemáticas, Rector (E), Vicerrectora"
+
+      - label: "Nivel que atiende"
+        name: "nivel"
+        widget: "select"
+        options:
+          - { label: "Educación Inicial", value: "inicial" }
+          - { label: "EGB Elemental (1ro-4to)", value: "egb-elemental" }
+          - { label: "EGB Media (5to-7mo)", value: "egb-media" }
+          - { label: "EGB Superior (8vo-10mo)", value: "egb-superior" }
+          - { label: "Bachillerato (1ro-3ro BGU)", value: "bachillerato" }
+          - { label: "Directivo", value: "directivo" }
+        required: false
+
+      - label: "Foto (opcional)"
+        name: "foto"
+        widget: "image"
+        required: false
+        hint: "Foto de perfil del docente. Formato JPG o PNG, fondo neutro preferible."
+        media_library:
+          config:
+            max_file_size: 3145728  # 3 MB
+
+      - label: "Activo en la institución"
+        name: "activo"
+        widget: "boolean"
+        default: true
+
+  # ── 5. INFORMACIÓN INSTITUCIONAL ──────────────────────────────
+  - name: "institucional"
+    label: "🏫 Información Institucional"
+    files:
+      - label: "Misión, Visión y Contacto"
+        name: "info"
+        file: "_data/institucional.yml"
+        fields:
+          - label: "Misión"
+            name: "mision"
+            widget: "text"
+            hint: "Texto completo de la misión institucional."
+
+          - label: "Visión"
+            name: "vision"
+            widget: "text"
+            hint: "Texto completo de la visión institucional."
+
+          - label: "Teléfono de contacto"
+            name: "telefono"
+            widget: "string"
+            required: false
+
+          - label: "Correo electrónico institucional"
+            name: "correo"
+            widget: "string"
+            required: false
+
+          - label: "Horario de atención"
+            name: "horario"
+            widget: "string"
+            default: "Lunes a Viernes · 07:30 – 13:00"
+
+          - label: "Rector(a) en funciones"
+            name: "rector"
+            widget: "string"
+            default: "Ing. Jahir Manuel López Constante, Mg. Sc."
