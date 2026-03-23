@@ -274,3 +274,68 @@ collections:
             name: "rector"
             widget: "string"
             default: "Ing. Jahir Manuel López Constante, Mg. Sc."
+
+            # ── 6. CRONOGRAMA INSTITUCIONAL ──────────────────────────────
+  - name: "cronograma"
+    label: "🗓️ Cronograma"
+    label_singular: "Evento"
+    folder: "_cronograma"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{titulo}} — {{fecha_inicio}}"
+    fields:
+      - label: "Nombre del evento"
+        name: "titulo"
+        widget: "string"
+        hint: "Ej: Entrega de libretas, Día del maestro, Exámenes finales"
+
+      - label: "Fecha de inicio"
+        name: "fecha_inicio"
+        widget: "datetime"
+        format: "DD/MM/YYYY"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+
+      - label: "Fecha de fin (si aplica)"
+        name: "fecha_fin"
+        widget: "datetime"
+        format: "DD/MM/YYYY"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+        required: false
+        hint: "Déjelo vacío si el evento es de un solo día."
+
+      - label: "Tipo de evento"
+        name: "tipo"
+        widget: "select"
+        options:
+          - { label: "📝 Académico", value: "academico" }
+          - { label: "🎉 Festivo / Cultural", value: "festivo" }
+          - { label: "📊 Evaluaciones", value: "evaluacion" }
+          - { label: "👨‍👩‍👧 Reunión de padres", value: "reunion_padres" }
+          - { label: "👩‍🏫 Reunión docente", value: "reunion_docente" }
+          - { label: "🏅 Deportivo", value: "deportivo" }
+          - { label: "📋 Administrativo", value: "administrativo" }
+        default: "academico"
+
+      - label: "Dirigido a"
+        name: "dirigido"
+        widget: "select"
+        options:
+          - { label: "🏛️ Toda la comunidad educativa", value: "comunidad" }
+          - { label: "🎓 Estudiantes", value: "estudiantes" }
+          - { label: "👨‍👩‍👧 Padres de familia", value: "padres" }
+          - { label: "👩‍🏫 Docentes", value: "docentes" }
+        default: "comunidad"
+
+      - label: "Descripción del evento"
+        name: "descripcion"
+        widget: "text"
+        required: false
+        hint: "Detalles adicionales del evento, lugar, hora, indicaciones."
+
+      - label: "Visible en la página"
+        name: "visible"
+        widget: "boolean"
+        default: true
+        hint: "Desactive para ocultar este evento temporalmente."
