@@ -1,0 +1,277 @@
+---
+layout: default
+title: Inicio
+---
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-badge">📍 Sixto Durán Ballén · 24 de Mayo · Manabí</div>
+    <h1>Unidad Educativa Fiscal<br/><em>"San Jacinto"</em></h1>
+    <p>Formando ciudadanos íntegros, críticos y comprometidos con su comunidad desde 1993, en el corazón rural de Manabí.</p>
+    <div class="hero-cta">
+      <a href="#oferta" class="btn btn-gold">Oferta Académica</a>
+      <a href="#contacto" class="btn btn-outline">Contáctenos</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">+30</div><div class="stat-lbl">Años de servicio</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-lbl">Docentes</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Niveles educativos</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Compromiso</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISIÓN & VISIÓN -->
+<section id="mision">
+  <div class="reveal">
+    <span class="section-label">Identidad institucional</span>
+    <h2 class="section-title">Misión <span>&amp;</span> Visión</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="mv-grid reveal">
+    <div class="mv-card card-mission">
+      <div class="mv-icon">🎯</div>
+      <h3>Misión</h3>
+      <p>La Unidad Educativa Fiscal "San Jacinto" - Siglo XXI, ubicada en la zona rural del cantón 24 de Mayo, parroquia Sixto Durán Ballén, desde su establecimiento el 13 de agosto de 1993, brinda una educación integral que abarca desde la Educación Inicial hasta el Bachillerato General Unificado en Ciencias, fomentando valores fundamentales como la honestidad, la equidad, la justicia, el respeto y la responsabilidad.</p>
+    </div>
+    <div class="mv-card card-vision">
+      <div class="mv-icon">🔭</div>
+      <h3>Visión</h3>
+      <p>Nos proyectamos como referente de excelencia a nivel parroquial, colaborando estrechamente con padres, docentes y estudiantes, impulsando hábitos de lectura, aprendizaje autónomo, habilidades socioemocionales y pensamiento crítico, para formar ciudadanos responsables y activos en la sociedad del futuro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA ACADÉMICA -->
+<section id="oferta">
+  <div class="reveal">
+    <span class="section-label">Niveles educativos</span>
+    <h2 class="section-title">Oferta <span>Académica</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="levels-grid reveal">
+    <div class="level-card"><div class="level-icon">🌱</div><h3>Educación Inicial</h3><p>Subnivel 1 y 2. Desarrollo integral en las primeras etapas de vida.</p></div>
+    <div class="level-card"><div class="level-icon">📚</div><h3>E.G.B. Elemental</h3><p>1.º a 4.º grado. Bases del aprendizaje formal.</p></div>
+    <div class="level-card"><div class="level-icon">🔬</div><h3>E.G.B. Media y Superior</h3><p>5.º a 10.º grado. Desarrollo del pensamiento crítico.</p></div>
+    <div class="level-card"><div class="level-icon">🎓</div><h3>Bachillerato General Unificado</h3><p>1.º a 3.º BGU, especialidad Ciencias.</p></div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section id="valores">
+  <div class="reveal">
+    <span class="section-label">Lo que nos define</span>
+    <h2 class="section-title">Nuestros <span style="color:var(--sky)">Valores</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="values-grid reveal">
+    <div class="value-item"><div class="value-icon">⚖️</div><h4>Honestidad</h4><p>Actuamos con transparencia y verdad.</p></div>
+    <div class="value-item"><div class="value-icon">🤝</div><h4>Equidad</h4><p>Igualdad de oportunidades para cada estudiante.</p></div>
+    <div class="value-item"><div class="value-icon">🏛️</div><h4>Justicia</h4><p>Aplicamos normas con imparcialidad.</p></div>
+    <div class="value-item"><div class="value-icon">🌿</div><h4>Respeto</h4><p>Valoramos a cada persona de nuestra comunidad.</p></div>
+    <div class="value-item"><div class="value-icon">✅</div><h4>Responsabilidad</h4><p>Cumplimos compromisos con dedicación.</p></div>
+    <div class="value-item"><div class="value-icon">💡</div><h4>Innovación</h4><p>Adoptamos herramientas pedagógicas actualizadas.</p></div>
+  </div>
+</section>
+
+<!-- EQUIPO DOCENTE — dinámico desde CMS -->
+<section id="docentes">
+  <div class="reveal">
+    <span class="section-label">Equipo humano</span>
+    <h2 class="section-title">Nuestros <span>Docentes</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="teachers-grid reveal">
+    {% assign docentes_activos = site.docentes | where: "activo", true %}
+    {% if docentes_activos.size > 0 %}
+      {% for docente in docentes_activos %}
+      <div class="teacher-card">
+        {% if docente.foto %}
+          <img src="{{ site.baseurl }}{{ docente.foto }}" alt="{{ docente.nombre }}" class="teacher-avatar-img"/>
+        {% else %}
+          <div class="teacher-avatar">{{ docente.nombre | split: ' ' | last | slice: 0 }}{{ docente.nombre | split: ' ' | first | slice: 0 }}</div>
+        {% endif %}
+        <h4>{{ docente.nombre }}</h4>
+        <span>{{ docente.cargo }}</span>
+      </div>
+      {% endfor %}
+    {% else %}
+      <!-- Docentes por defecto mientras se carga el CMS -->
+      <div class="teacher-card"><div class="teacher-avatar">JL</div><h4>Ing. Jahir López C., Mg. Sc.</h4><span>Rector (E)</span></div>
+      <div class="teacher-card"><div class="teacher-avatar">FV</div><h4>Lic. Fabiola Vargas Mera</h4><span>Docente</span></div>
+      <div class="teacher-card"><div class="teacher-avatar">DM</div><h4>Lic. Darwin Murillo López</h4><span>Docente</span></div>
+      <div class="teacher-card"><div class="teacher-avatar">NC</div><h4>Lic. Nelson Chiluiza M.</h4><span>Docente</span></div>
+      <div class="teacher-card"><div class="teacher-avatar">WP</div><h4>Lic. Wilton Ponce B.</h4><span>Docente</span></div>
+      <div class="teacher-card"><div class="teacher-avatar">SP</div><h4>Lic. Santiago Pico Suárez</h4><span>Docente</span></div>
+      <div class="teacher-card"><div class="teacher-avatar">RQ</div><h4>Lic. Ruth Quinche</h4><span>Docente</span></div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- NOTICIAS — dinámicas desde CMS -->
+<section id="noticias">
+  <div class="reveal">
+    <span class="section-label">Comunidad informada</span>
+    <h2 class="section-title">Noticias <span>&amp; Comunicados</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="news-grid reveal">
+    {% assign noticias_pub = site.noticias | where: "publicado", true | sort: "fecha" | reverse %}
+    {% if noticias_pub.size > 0 %}
+      {% for noticia in noticias_pub limit: 6 %}
+      <div class="news-card">
+        <div class="news-img">
+          {% if noticia.imagen %}<img src="{{ site.baseurl }}{{ noticia.imagen }}" alt="{{ noticia.titulo }}" style="width:100%;height:100%;object-fit:cover;"/>
+          {% else %}📋{% endif %}
+        </div>
+        <div class="news-body">
+          <span class="news-tag">{{ noticia.categoria }}</span>
+          <div class="news-date">{{ noticia.fecha }}</div>
+          <h4>{{ noticia.titulo }}</h4>
+          <p>{{ noticia.resumen }}</p>
+          <a href="{{ site.baseurl }}{{ noticia.url }}" style="color:var(--mid);font-size:.85rem;font-weight:600;">Leer más →</a>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="news-card"><div class="news-img">📋</div><div class="news-body"><span class="news-tag">Comunicado</span><div class="news-date">2026</div><h4>Bienvenidos al año lectivo 2025–2026</h4><p>La institución da la bienvenida a toda la comunidad educativa al nuevo año lectivo.</p></div></div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- CRONOGRAMA — dinámico desde CMS -->
+<section id="cronograma">
+  <div class="reveal">
+    <span class="section-label">Planificación institucional</span>
+    <h2 class="section-title">Cronograma <span>de Actividades</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="cronograma-grid reveal">
+    {% assign eventos = site.cronograma | where: "visible", true | sort: "fecha_inicio" %}
+    {% if eventos.size > 0 %}
+      {% for evento in eventos %}
+      <div class="evento-card">
+        <div class="evento-fecha">
+          <span class="evento-dia">{{ evento.fecha_inicio | date: "%d" }}</span>
+          <span class="evento-mes">{{ evento.fecha_inicio | date: "%b" | upcase }}</span>
+        </div>
+        <div class="evento-info">
+          <span class="evento-tipo tipo-{{ evento.tipo }}">{{ evento.tipo }}</span>
+          <h4>{{ evento.titulo }}</h4>
+          {% if evento.descripcion %}<p>{{ evento.descripcion }}</p>{% endif %}
+          <small>👥 {{ evento.dirigido }}</small>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">📅 Los eventos del cronograma aparecerán aquí una vez agregados desde el panel de administración.</div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- GALERÍA — dinámica desde CMS -->
+<section id="galeria">
+  <div class="reveal">
+    <span class="section-label">Vida institucional</span>
+    <h2 class="section-title">Galería <span>Fotográfica</span></h2>
+    <div class="divider"></div>
+  </div>
+  {% assign albumes = site.galeria | sort: "fecha" | reverse %}
+  {% if albumes.size > 0 %}
+    {% for album in albumes limit: 1 %}
+    <p class="section-lead reveal">{{ album.titulo }} — {{ album.descripcion }}</p>
+    <div class="gallery-grid reveal">
+      {% for foto in album.fotos limit: 5 %}
+      <div class="gallery-item {% if forloop.first %}gallery-main{% endif %}">
+        <img src="{{ site.baseurl }}{{ foto.imagen }}" alt="{{ foto.descripcion }}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"/>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  {% else %}
+  <div class="gallery-grid reveal">
+    <div class="gallery-item"><div class="gallery-placeholder"><div class="g-icon">🏫</div><strong>Instalaciones San Jacinto</strong><small>Agregue fotos desde el panel CMS</small></div></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><div class="g-icon">📖</div><small>Actividades académicas</small></div></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><div class="g-icon">🎨</div><small>Actividades culturales</small></div></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><div class="g-icon">⚽</div><small>Deportes</small></div></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><div class="g-icon">🌿</div><small>Entorno natural</small></div></div>
+  </div>
+  {% endif %}
+</section>
+
+<!-- DOCUMENTOS — dinámicos desde CMS -->
+<section id="documentos">
+  <div class="reveal">
+    <span class="section-label">Recursos institucionales</span>
+    <h2 class="section-title">Documentos <span>Descargables</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="docs-grid reveal">
+    {% assign docs_visibles = site.documentos | where: "visible", true | sort: "fecha" | reverse %}
+    {% if docs_visibles.size > 0 %}
+      {% for doc in docs_visibles %}
+      <div class="doc-card">
+        <div class="doc-icon">
+          {% if doc.tipo == "circular" %}📋
+          {% elsif doc.tipo == "planilla" %}📊
+          {% elsif doc.tipo == "plan" %}📖
+          {% elsif doc.tipo == "cronograma" %}🗓️
+          {% else %}📄{% endif %}
+        </div>
+        <div class="doc-info">
+          <span class="doc-tipo">{{ doc.tipo }}</span>
+          <h4>{{ doc.titulo }}</h4>
+          <p>{{ doc.descripcion }}</p>
+          <small>{{ doc.fecha }} · {{ doc.dirigido }}</small>
+        </div>
+        {% if doc.archivo %}
+        <a href="{{ site.baseurl }}{{ doc.archivo }}" download class="btn-download">⬇️ Descargar</a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">📄 Los documentos aparecerán aquí una vez subidos desde el panel de administración.</div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="reveal">
+    <span class="section-label">Comuníquese con nosotros</span>
+    <h2 class="section-title">Contacto</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-layout reveal">
+    <div class="contact-info">
+      <div class="contact-item"><div class="c-icon">📍</div><div><h5>Dirección</h5><p>{{ site.institucion.ubicacion }}</p></div></div>
+      <div class="contact-item"><div class="c-icon">🏛️</div><div><h5>Código AMIE</h5><p>{{ site.institucion.amie }} · {{ site.institucion.zona }} · {{ site.institucion.distrito }}</p></div></div>
+      <div class="contact-item"><div class="c-icon">📅</div><div><h5>Fundación</h5><p>{{ site.institucion.fundacion }} · Régimen {{ site.institucion.regimen }}</p></div></div>
+      <div class="contact-item"><div class="c-icon">👤</div><div><h5>Rector (E)</h5><p>{{ site.institucion.rector }}</p></div></div>
+      <div class="contact-item"><div class="c-icon">🕐</div><div><h5>Horario de Atención</h5><p>{{ site.institucion.horario }}</p></div></div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group"><label>Nombre completo</label><input type="text" placeholder="Su nombre" id="cf-name"/></div>
+        <div class="form-group"><label>Teléfono / WhatsApp</label><input type="text" placeholder="0987 654 321" id="cf-phone"/></div>
+      </div>
+      <div class="form-group"><label>Correo electrónico</label><input type="email" placeholder="correo@ejemplo.com" id="cf-email"/></div>
+      <div class="form-group">
+        <label>Tipo de consulta</label>
+        <select id="cf-type">
+          <option value="">— Seleccione —</option>
+          <option>Información académica</option>
+          <option>Matrículas</option>
+          <option>Comunicado a docentes</option>
+          <option>Padres de familia</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensaje</label><textarea placeholder="Escriba su mensaje aquí..." id="cf-msg"></textarea></div>
+      <button class="btn-submit" onclick="submitForm()">Enviar Mensaje ✉️</button>
+      <p id="form-msg"></p>
+    </div>
+  </div>
+</section>
