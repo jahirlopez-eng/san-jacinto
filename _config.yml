@@ -1,0 +1,58 @@
+# ═══════════════════════════════════════════════════════
+#  Jekyll Config — U.E.F. "San Jacinto" – Siglo XXI
+#  AMIE: 13H03824 | Manabí, Ecuador
+# ═══════════════════════════════════════════════════════
+
+title: 'U.E.F. "San Jacinto" – Siglo XXI'
+description: "Institución educativa pública ubicada en la parroquia Sixto Durán Ballén, cantón 24 de Mayo, Manabí, Ecuador. Educación Inicial, EGB y Bachillerato General Unificado."
+url: "https://jahirlopez-eng.github.io"
+baseurl: "/san-jacinto"
+lang: es
+
+# Datos institucionales
+institucion:
+  nombre: 'Unidad Educativa Fiscal "San Jacinto" – Siglo XXI'
+  amie: "13H03824"
+  zona: "Zona 4"
+  distrito: "Distrito 13D04"
+  rector: "Ing. Jahir Manuel López Constante, Mg. Sc."
+  cargo: "Rector (E)"
+  fundacion: "13 de agosto de 1993"
+  horario: "Lunes a Viernes · 07:30 – 13:00"
+  ubicacion: "Parroquia Sixto Durán Ballén, Cantón 24 de Mayo, Manabí, Ecuador"
+  regimen: "Costa"
+
+# Colecciones
+collections:
+  noticias:
+    output: true
+    permalink: /noticias/:slug/
+  cronograma:
+    output: false
+  docentes:
+    output: false
+  galeria:
+    output: false
+  documentos:
+    output: false
+
+# Valores por defecto
+defaults:
+  - scope:
+      path: ""
+      type: "noticias"
+    values:
+      layout: "noticia"
+      publicado: true
+
+# Plugins de GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Excluir archivos innecesarios
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
